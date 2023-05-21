@@ -1,3 +1,5 @@
 .vscode/
 
 build/
+
+STM32Make.make

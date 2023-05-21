@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,7 +99,7 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
+  printf("Hello world from crazybot!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,7 +109,6 @@ int main(void)
     /* USER CODE END WHILE */
     
     /* USER CODE BEGIN 3 */
-    HAL_UART_Transmit(&huart1, (uint8_t *)"Hello World!\r\n", 14, 1000);
     HAL_Delay(1000);
   }
   /* USER CODE END 3 */
@@ -161,7 +160,11 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+int _write(int fd, char *ptr, int len)  
+{  
+  HAL_UART_Transmit(&huart1, (uint8_t*)ptr, len, 0xFFFF);
+  return len;
+}
 /* USER CODE END 4 */
 
 /**
